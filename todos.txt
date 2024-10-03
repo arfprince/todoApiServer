@@ -1,0 +1,33 @@
+[
+  {
+    "userID": "prince",
+    "todos": [
+      {
+        "id": "cd52864d-a962-475b-9834-18dcc8c6a7d9",
+        "title": "code",
+        "status": "todo",
+        "createdAt": "2024-10-03T08:09:19.639Z",
+        "updatedAt": "2024-10-03T08:09:19.639Z"
+      }
+    ]
+  },
+  {
+    "userID": "mahfuz",
+    "todos": [
+      {
+        "id": "4aa4e8b5-c0c4-4536-a8b3-5bf1cf976ade",
+        "title": "prayer",
+        "status": "todo",
+        "createdAt": "2024-10-03T08:09:55.180Z",
+        "updatedAt": "2024-10-03T08:09:55.180Z"
+      },
+      {
+        "id": "74e0c41f-b861-40e6-b4b1-fdd71ce2a215",
+        "title": "eat",
+        "status": "todo",
+        "createdAt": "2024-10-03T08:11:45.617Z",
+        "updatedAt": "2024-10-03T08:11:45.617Z"
+      }
+    ]
+  }
+]
