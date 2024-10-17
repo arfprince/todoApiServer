@@ -8,4 +8,4 @@ node_modules/
 *.log
 
 # Ignore build artifacts
-dist/
+dist/.DS_Store
