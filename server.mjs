@@ -136,8 +136,10 @@ app.delete("/:userID/todos", (c) => {
   return c.json({ message: "All todos deleted successfully" });
 });
 
-const port = 3000;
+const port = process.env.PORT || 3000; 
+console.log(`Server is running on port ${port}`);
 serve({
   fetch: app.fetch,
   port,
 });
+console.log(`http://localhost:${port}/`);
