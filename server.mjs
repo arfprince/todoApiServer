@@ -1,7 +1,7 @@
-import { serve } from '@hono/node-server';
-import { Hono } from 'hono';
-import { prettyJSON } from 'hono/pretty-json';
-import  fs  from 'fs';
+import { serve } from "@hono/node-server";
+import { Hono } from "hono";
+import { prettyJSON } from "hono/pretty-json";
+import fs from "fs";
 const app = new Hono();
 app.use(prettyJSON());
 
@@ -12,16 +12,21 @@ function saveTodosToFile() {
     todos,
   }));
 
-  fs.writeFile('todos.txt', JSON.stringify(todosArray, null, 2), "utf8", (err) => {
-    if (err) {
-      console.error('Error saving todos to file:', err);
-    } else {
-      console.log('Todos saved to todos.txt');
+  fs.writeFile(
+    "todos.txt",
+    JSON.stringify(todosArray, null, 2),
+    "utf8",
+    (err) => {
+      if (err) {
+        console.error("Error saving todos to file:", err);
+      } else {
+        console.log("Todos saved to todos.txt");
+      }
     }
-  });
+  );
 }
-app.get('/:userID/todos', (c) => {
-  const userID = c.req.param('userID');
+app.get("/:userID/todos", (c) => {
+  const userID = c.req.param("userID");
 
   if (!data.has(userID)) {
     return c.json({ message: "No todos found for this user" }, 404);
@@ -31,9 +36,9 @@ app.get('/:userID/todos', (c) => {
   return c.json(todos);
 });
 
-app.get('/:userID/todos/:id', (c) => {
-  const userID = c.req.param('userID');
-  const todoID = c.req.param('id');
+app.get("/:userID/todos/:id", (c) => {
+  const userID = c.req.param("userID");
+  const todoID = c.req.param("id");
 
   if (!data.has(userID)) {
     return c.json({ message: "No todos found for this user" }, 404);
@@ -49,8 +54,8 @@ app.get('/:userID/todos/:id', (c) => {
   return c.json(todo);
 });
 
-app.post('/:userID/todos', async (c) => {
-  const userID = c.req.param('userID');
+app.post("/:userID/todos", async (c) => {
+  const userID = c.req.param("userID");
   const body = await c.req.json();
 
   if (!body.title) {
@@ -62,7 +67,7 @@ app.post('/:userID/todos', async (c) => {
     title: body.title,
     status: "todo",
     createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString()
+    updatedAt: new Date().toISOString(),
   };
 
   if (!data.has(userID)) {
@@ -74,9 +79,9 @@ app.post('/:userID/todos', async (c) => {
   return c.json(newTodo, 201);
 });
 
-app.put('/:userID/todos/:id', async (c) => {
-  const userID = c.req.param('userID');
-  const todoID = c.req.param('id');
+app.put("/:userID/todos/:id", async (c) => {
+  const userID = c.req.param("userID");
+  const todoID = c.req.param("id");
   const body = await c.req.json();
 
   if (!data.has(userID)) {
@@ -97,9 +102,9 @@ app.put('/:userID/todos/:id', async (c) => {
   return c.json(todo);
 });
 
-app.delete('/:userID/todos/:id', (c) => {
-  const userID = c.req.param('userID');
-  const todoID = c.req.param('id');
+app.delete("/:userID/todos/:id", (c) => {
+  const userID = c.req.param("userID");
+  const todoID = c.req.param("id");
 
   if (!data.has(userID)) {
     return c.json({ message: "No todos found for this user" }, 404);
@@ -119,8 +124,8 @@ app.delete('/:userID/todos/:id', (c) => {
   return c.json({ message: "Todo deleted successfully" });
 });
 
-app.delete('/:userID/todos', (c) => {
-  const userID = c.req.param('userID');
+app.delete("/:userID/todos", (c) => {
+  const userID = c.req.param("userID");
 
   if (!data.has(userID)) {
     return c.json({ message: "No todos found for this user" }, 404);
@@ -132,7 +137,7 @@ app.delete('/:userID/todos', (c) => {
 });
 
 const port = 3000;
-serve({ 
-  fetch: app.fetch, 
-  port 
+serve({
+  fetch: app.fetch,
+  port,
 });
